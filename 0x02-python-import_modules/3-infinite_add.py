@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 from sys import argv
+i = 1
+length = len(argv)
+sum = 0
 if __name__ == '__main__':
-	numarg = 0
-        for num in argv[1:]:
-		numarg = numarg + int(num)
-	print(numarg)
+	for num in range(1, length):
+		sum += int(argv[num])
+print(sum)
