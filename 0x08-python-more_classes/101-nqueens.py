@@ -1,69 +1,63 @@
 #!/usr/bin/python3
+"""N Queens Module.
 
-
+Contains the N Queens problem solver.
+"""
 import sys
 
 
-def printBoard(board):
-    if any(1 in x for x in board):
-        print([[idx, board[idx].index(1)] for idx, val in enumerate(board)])
+def error_exit(message="", code=1):
+    """Handles exit.
+
+    Args:
+        message (str): the message to display on stdout.
+        code (int): the exit code.
+    """
+    print(message)
+    exit(code)
 
 
-def isSafe(row, square, chessboard, N, diag):
-    if chessboard[row][square]:
-        return False
-    if square - diag >= 0 and chessboard[row][square - diag]:
-        return False
-    if square + diag < (N) and chessboard[row][square + diag]:
-        return False
-    if row == 0:
-        return True
-    return isSafe(row - 1, square, chessboard, N, diag + 1)
+def test_pos(board, y):
+    """Tests if wether a queen can be placed at the current position.
+
+    Args:
+        board (list): the chessboard.
+        y (int): the height parameter.
+    """
+    for i in range(y):
+        if board[y][1] is board[i][1]:
+            return False
+        if abs(board[y][1] - board[i][1]) == y - i:
+            return False
+    return True
 
 
-def placeSquare(row, position, chessboard, N):
-    for square in range(position, N):
-        if 1 in chessboard[row]:
-            return 0
-        if not isSafe(row - 1, square, chessboard, N, 1):
-            continue
-        chessboard[row][square] = 1
-        return
-    return 1
+def rec_backtrack(board, y):
+    """Backtrack the possibilities.
 
-if len(sys.argv) != 2:
-    print("Usage: nqueens N")
-    sys.exit(1)
+    Args:
+        board (list): the chessboard.
+        y (int): the height parameter.
+    """
+    if y is N:
+        print(board)
+    else:
+        for x in range(N):
+            board[y][1] = x
+            if test_pos(board, y):
+                rec_backtrack(board, y + 1)
 
-N = sys.argv[1]
 
-if not str.isdigit(N):
-    print("N must be a number")
-    sys.exit(1)
+if len(sys.argv) is not 2:
+    error_exit("Usage: nqueens N")
 
-N = int(N)
+try:
+    N = int(sys.argv[1])
+except:
+    error_exit("N must be a number")
 
 if N < 4:
-    print("N must be at least 4")
-    sys.exit(1)
+    error_exit("N must be at least 4")
 
-queen = 0
-
-while queen != N:
-    chessboard = [[0 for x in range(N)] for x in range(N)]
-    chessboard[0][queen] = 1
-    position = 0
-    row = 1
-    while row < N:
-        if placeSquare(row, position, chessboard, N):
-            row -= 1
-            position = chessboard[row].index(1)
-            chessboard[row][position] = 0
-            position += 1
-            if not row:
-                break
-        else:
-            row += 1
-            position = 0
-    printBoard(chessboard)
-    queen += 1
+board = [[y, 0] for y in range(N)]
+rec_backtrack(board, 0)
