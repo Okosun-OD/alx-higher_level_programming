@@ -1,8 +1,7 @@
 #!/usr/bin/python3
+"""Module lockedclass."""
+
+
 class LockedClass:
-    """
-    LockedClass with no class or object attribute,
-    that prevents the user from dynamically creating new instance attributes,
-    except if the new instance attribute is called first_name
-    """
+    """this class that only allows a single attribute to be set."""
     __slots__ = ['first_name']
