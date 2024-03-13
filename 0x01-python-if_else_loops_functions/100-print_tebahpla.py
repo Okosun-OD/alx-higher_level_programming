@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-for letra in reversed(range(97, 123)):
-	if letra % 2 != 0:
-		letra = letra - 32
-	print('{}'.format(chr(letra)), end='')
+# Author -Bamidele Adefolaju
+
+i = 0
+for c in range(ord('z'), ord('a') - 1, -1):
+    print("{}".format(chr(c - i)), end="")
+    i = 32 if i == 0 else 0

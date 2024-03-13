@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-for fnum in range(10):
-	for snum in range(10):
-		if fnum < snum:
-			print('{:d}{:d}'.format(fnum, snum), end='')
-			if fnum < 8:
-				print(', ', end='')
-print()
+# Author - Tolulope Fakunle
+
+for digit1 in range(0, 10):
+    for digit2 in range(digit1 + 1, 10):
+        if digit1 == 8 and digit2 == 9:
+            print("{}{}".format(digit1, digit2))
+        else:
+            print("{}{}".format(digit1, digit2), end=", ")
