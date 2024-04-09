@@ -1,17 +1,14 @@
 #!/usr/bin/python3
 """
 This module defines `print_square`
-
 The function prints a square
 """
 
 
 def print_square(size):
     """prints a square with size, `size`
-
     Args:
         size (int)
-
     Raises:
         TypeError: size must be an integer
         ValueError: size must be >= 0
