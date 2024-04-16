@@ -1,21 +1,23 @@
 #!/usr/bin/python3
-"""
-This module contains a class
-with public instance and Raises
-exception when required
-
+"""Module 7-base_geometry.
+Creates a BaseGeometry class.
 """
 
 
 class BaseGeometry:
-    """ Class BaseGeometry """
+    """Class with public instance methods."""
+
     def area(self):
-        """ raises not implemented exception """
-        raise Exception("area() is not implemented")
+        """Raises an Exception with the message
+        'area() is not implemented'.
+        """
+
+        raise Exception('area() is not implemented')
 
     def integer_validator(self, name, value):
-        """ raise error if value is not a strictly positive integer """
+        """Validates value."""
+
         if type(value) is not int:
-            raise TypeError("{:s} must be an integer".format(name))
+            raise TypeError("{} must be an integer".format(name))
         if value <= 0:
-            raise ValueError("{:s} must be greater than 0".format(name))
+            raise ValueError("{} must be greater than 0".format(name))
